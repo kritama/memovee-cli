@@ -2,17 +2,35 @@ package version
 
 import "fmt"
 
+type Info struct {
+	Version   string
+	Revision  string
+	BuildTime string
+}
+
 var (
 	Version   = "dev"
 	Revision  = "unknown"
 	BuildTime = "unknown"
 )
 
-func String() string {
+func Current() Info {
+	return Info{
+		Version:   Version,
+		Revision:  Revision,
+		BuildTime: BuildTime,
+	}
+}
+
+func (i Info) String() string {
 	return fmt.Sprintf(
 		"memovee %s (revision %s, built %s)",
-		Version,
-		Revision,
-		BuildTime,
+		i.Version,
+		i.Revision,
+		i.BuildTime,
 	)
+}
+
+func String() string {
+	return Current().String()
 }
