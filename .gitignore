@@ -1,0 +1,15 @@
+# Go build and test outputs
+/bin/
+/dist/
+*.coverprofile
+coverage.out
+
+# Local environment
+.env
+.env.*
+!.env.example
+
+# Editors and operating systems
+.DS_Store
+*.swp
+*~
