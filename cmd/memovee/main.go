@@ -1,20 +1,18 @@
 package main
 
 import (
-	"fmt"
 	"os"
 
-	"github.com/kritama/memovee-cli/internal/version"
+	"github.com/kritama/memovee-cli/internal/command"
 )
 
-const exitUsage = 2
-
 func main() {
-	if len(os.Args) == 2 && os.Args[1] == "version" {
-		fmt.Println(version.String())
-		return
+	exitCode := command.Run(os.Args[1:], command.IO{
+		Stdin:  os.Stdin,
+		Stdout: os.Stdout,
+		Stderr: os.Stderr,
+	})
+	if exitCode != command.ExitSuccess {
+		os.Exit(exitCode)
 	}
-
-	fmt.Fprintln(os.Stderr, "usage: memovee version")
-	os.Exit(exitUsage)
 }
